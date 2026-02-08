@@ -1,0 +1,91 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Heart } from "lucide-react";
+
+export default function ValentineProposalPage() {
+  const bgImage = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAYGBgYHBgcICAcKCwoLCg8ODAwODxYQERAREBYiFRkVFRkVIh4kHhweJB42KiYmKjY+";
+
+  return (
+    <div
+      className="min-h-screen flex items-center justify-center p-6 bg-cover bg-center relative"
+      style={{
+        backgroundImage: `url(${bgImage})`
+      }}
+    >
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        className="w-full max-w-3xl relative z-10"
+      >
+        <Card className="rounded-2xl shadow-xl bg-white/90">
+          <CardContent className="p-10 text-center space-y-8">
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              className="flex justify-center"
+            >
+              <Heart size={60} />
+            </motion.div>
+
+            <h1 className="text-4xl md:text-5xl font-bold">
+              Urshi Sarkar, I Have Something To Ask You ❤️
+            </h1>
+
+            <p className="text-lg md:text-xl leading-relaxed">
+              From the moment you walked into my life, everything started
+              feeling brighter, warmer, and more meaningful. Every laugh,
+              every memory, every small moment with you is something I
+              treasure more than words can explain.
+            </p>
+
+            <p className="text-lg md:text-xl leading-relaxed">
+              You are my comfort, my happiness, and my favorite person.
+              And today, I just want to ask one simple question...
+            </p>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-3xl md:text-4xl font-semibold"
+            >
+              Urshi Sarkar, Will You Be My Valentine? 💖
+            </motion.h2>
+
+            <div className="flex gap-6 justify-center pt-4">
+              <Button
+                className="text-lg px-8 py-6 rounded-2xl"
+                onClick={() => alert("You just made me the happiest person ❤️")}
+              >
+                Yes 💕
+              </Button>
+
+              <Button
+                variant="outline"
+                className="text-lg px-8 py-6 rounded-2xl"
+                onMouseEnter={(e) => {
+                  const btn = e.target;
+                  btn.style.position = "relative";
+                  btn.style.left = Math.random() * 200 - 100 + "px";
+                  btn.style.top = Math.random() * 100 - 50 + "px";
+                }}
+              >
+                No 😜
+              </Button>
+            </div>
+
+            <p className="text-sm opacity-70 pt-6">
+              Made with ❤️ just for you
+            </p>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </div>
+  );
+}
