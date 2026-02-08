@@ -1,29 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
 
 export default function ValentineProposalPage() {
-  const bgImage = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAYGBgYHBgcICAcKCwoLCg8ODAwODxYQERAREBYiFRkVFRkVIh4kHhweJB42KiYmKjY+";
+  const [noClicks, setNoClicks] = useState(0);
+
+  const handleNoClick = () => {
+    setNoClicks(noClicks + 1);
+
+    if (noClicks === 0) {
+      alert("Are you sure? Think again 😏");
+    } else if (noClicks === 1) {
+      alert("Come on Urshi... you know you want to click YES ❤️");
+    } else if (noClicks === 2) {
+      alert("Okay this button clearly doesn’t work 😂 Try YES");
+    } else {
+      alert("No is not an option today 😌❤️");
+    }
+  };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center p-6 bg-cover bg-center relative"
-      style={{
-        backgroundImage: `url(${bgImage})`
-      }}
-    >
-      {/* Dark overlay for readability */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
-
+    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-rose-100 to-red-100 flex items-center justify-center p-6">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
-        className="w-full max-w-3xl relative z-10"
+        className="w-full max-w-3xl"
       >
-        <Card className="rounded-2xl shadow-xl bg-white/90">
+        <Card className="rounded-2xl shadow-xl">
           <CardContent className="p-10 text-center space-y-8">
             <motion.div
               animate={{ scale: [1, 1.2, 1] }}
@@ -69,6 +75,7 @@ export default function ValentineProposalPage() {
               <Button
                 variant="outline"
                 className="text-lg px-8 py-6 rounded-2xl"
+                onClick={handleNoClick}
                 onMouseEnter={(e) => {
                   const btn = e.target;
                   btn.style.position = "relative";
