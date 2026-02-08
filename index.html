@@ -1,98 +1,170 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Heart } from "lucide-react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine Proposal</title>
 
-export default function ValentineProposalPage() {
-  const [noClicks, setNoClicks] = useState(0);
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  const handleNoClick = () => {
-    setNoClicks(noClicks + 1);
-
-    if (noClicks === 0) {
-      alert("Are you sure? Think again 😏");
-    } else if (noClicks === 1) {
-      alert("Come on Urshi... you know you want to click YES ❤️");
-    } else if (noClicks === 2) {
-      alert("Okay this button clearly doesn’t work 😂 Try YES");
-    } else {
-      alert("No is not an option today 😌❤️");
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
-  };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-rose-100 to-red-100 flex items-center justify-center p-6">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-        className="w-full max-w-3xl"
-      >
-        <Card className="rounded-2xl shadow-xl">
-          <CardContent className="p-10 text-center space-y-8">
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ repeat: Infinity, duration: 2 }}
-              className="flex justify-center"
-            >
-              <Heart size={60} />
-            </motion.div>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffe4ec, #ffd6e0, #ffc1cc);
+    }
 
-            <h1 className="text-4xl md:text-5xl font-bold">
-              Urshi Sarkar, I Have Something To Ask You ❤️
-            </h1>
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      text-align: center;
+      max-width: 700px;
+      width: 90%;
+      animation: fadeIn 1s ease;
+    }
 
-            <p className="text-lg md:text-xl leading-relaxed">
-              From the moment you walked into my life, everything started
-              feeling brighter, warmer, and more meaningful. Every laugh,
-              every memory, every small moment with you is something I
-              treasure more than words can explain.
-            </p>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
 
-            <p className="text-lg md:text-xl leading-relaxed">
-              You are my comfort, my happiness, and my favorite person.
-              And today, I just want to ask one simple question...
-            </p>
+    .heart {
+      font-size: 60px;
+      animation: pulse 2s infinite;
+    }
 
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-3xl md:text-4xl font-semibold"
-            >
-              Urshi Sarkar, Will You Be My Valentine? 💖
-            </motion.h2>
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
 
-            <div className="flex gap-6 justify-center pt-4">
-              <Button
-                className="text-lg px-8 py-6 rounded-2xl"
-                onClick={() => alert("You just made me the happiest person ❤️")}
-              >
-                Yes 💕
-              </Button>
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 20px;
+    }
 
-              <Button
-                variant="outline"
-                className="text-lg px-8 py-6 rounded-2xl"
-                onClick={handleNoClick}
-                onMouseEnter={(e) => {
-                  const btn = e.target;
-                  btn.style.position = "relative";
-                  btn.style.left = Math.random() * 200 - 100 + "px";
-                  btn.style.top = Math.random() * 100 - 50 + "px";
-                }}
-              >
-                No 😜
-              </Button>
-            </div>
+    h2 {
+      font-size: 2rem;
+      margin-top: 20px;
+    }
 
-            <p className="text-sm opacity-70 pt-6">
-              Made with ❤️ just for you
-            </p>
-          </CardContent>
-        </Card>
-      </motion.div>
+    p {
+      font-size: 1.1rem;
+      margin-top: 20px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 16px 28px;
+      font-size: 18px;
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    .yes:hover {
+      transform: scale(1.1);
+    }
+
+    .no {
+      background: white;
+      border: 2px solid #ff4d6d;
+      color: #ff4d6d;
+      position: relative;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="heart">❤️</div>
+
+    <h1>Urshi Sarkar, I Have Something To Ask You ❤️</h1>
+
+    <p>
+      From the moment you walked into my life, everything started feeling brighter,
+      warmer, and more meaningful. Every laugh, every memory, every small moment
+      with you is something I treasure more than words can explain.
+    </p>
+
+    <p>
+      You are my comfort, my happiness, and my favorite person.
+      And today, I just want to ask one simple question...
+    </p>
+
+    <h2>Urshi Sarkar, Will You Be My Valentine? 💖</h2>
+
+    <div class="buttons">
+      <button class="yes" onclick="yesClicked()">Yes 💕</button>
+      <button class="no" id="noBtn" onclick="noClicked()">No 😜</button>
     </div>
-  );
-}
+
+    <footer>Made with ❤️ just for you</footer>
+  </div>
+
+  <script>
+    let noClicks = 0;
+
+    function yesClicked() {
+      alert("You just made me the happiest person ❤️");
+    }
+
+    function noClicked() {
+      noClicks++;
+
+      if (noClicks === 1) {
+        alert("Are you sure? Think again 😏");
+      } else if (noClicks === 2) {
+        alert("Come on Urshi... you know you want to click YES ❤️");
+      } else if (noClicks === 3) {
+        alert("Okay this button clearly doesn’t work 😂 Try YES");
+      } else {
+        alert("No is not an option today 😌❤️");
+      }
+    }
+
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.addEventListener("mouseenter", () => {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 100 - 50;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  </script>
+
+</body>
+</html>
